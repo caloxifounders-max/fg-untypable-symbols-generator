@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Symbol Gen</title>
+    <style>
+        body { font-family: -apple-system, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; background: #1c1c1e; color: white; margin: 0; }
+        .card { background: #2c2c2e; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; width: 85%; max-width: 350px; }
+        #output { font-size: 2rem; margin: 1.5rem 0; padding: 20px; background: #3a3a3c; border-radius: 12px; color: #34c759; word-break: break-all; min-height: 1.2em; border: 1px solid #48484a; }
+        button { background: #007aff; color: white; border: none; padding: 15px; border-radius: 12px; font-size: 1rem; font-weight: 600; width: 100%; margin-bottom: 10px; cursor: pointer; }
+        .copy-btn { background: #5856d6; }
+        button:active { opacity: 0.7; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Symbol Generator</h2>
+        <div id="output">Click Gen</div>
+        <button onclick="generate()">Generate Symbols</button>
+        <button class="copy-btn" onclick="copyText()">Copy to Clipboard</button>
+    </div>
+
+    <script>
+        function generate() {
+            // These are "untypable" or "aesthetic" unicode symbols
+            const symbols = ["⚡", "⚔️", "💎", "✨", "🔥", "🌀", "💠", "☣️", "⚛️", "☯️", "💮", "🔱", "⚚", "❂", "❈", "☠️"];
+            let result = "";
+            for (let i = 0; i < 5; i++) {
+                result += symbols[Math.floor(Math.random() * symbols.length)];
+            }
+            document.getElementById("output").innerText = result;
+        }
+
+        function copyText() {
+            const text = document.getElementById("output").innerText;
+            if(text === "Click Gen") return;
+            navigator.clipboard.writeText(text);
+            alert("Copied symbols!");
+        }
+    </script>
+</body>
+</html>
